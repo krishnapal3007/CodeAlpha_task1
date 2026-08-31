@@ -1,0 +1,126 @@
+# 💳 CreditScoring AI
+
+## Machine Learning Based Credit Risk Prediction
+
+CreditScoring AI is a machine learning project developed as part of a **CodeAlpha Machine Learning Internship**.
+
+The system predicts the probability of a customer experiencing **serious financial delinquency within two years** using historical financial and credit-related information.
+
+The project uses multiple classification algorithms, compares their performance, optimizes the final Random Forest model using a decision threshold, and provides an interactive **Streamlit web application** for real-time credit-risk assessment.
+
+---
+
+## 🎯 Project Objective
+
+The primary objective is to build a machine learning system that can:
+
+- Analyze customer financial information
+- Identify patterns associated with credit risk
+- Predict serious delinquency
+- Compare different classification algorithms
+- Optimize prediction performance
+- Provide probability-based credit-risk assessment
+- Offer an interactive web interface for predictions
+
+---
+
+## 📊 Dataset
+
+The project uses the **Give Me Some Credit** dataset.
+
+### Dataset Size
+
+- **150,000 records**
+- **12 columns**
+
+### Target Variable
+
+`SeriousDlqin2yrs`
+
+Where:
+
+- `0` → No serious delinquency
+- `1` → Serious delinquency
+
+### Features
+
+The model uses the following financial and demographic features:
+
+- RevolvingUtilizationOfUnsecuredLines
+- age
+- NumberOfTime30-59DaysPastDueNotWorse
+- DebtRatio
+- MonthlyIncome
+- NumberOfOpenCreditLinesAndLoans
+- NumberOfTimes90DaysLate
+- NumberRealEstateLoansOrLines
+- NumberOfTime60-89DaysPastDueNotWorse
+- NumberOfDependents
+
+---
+
+## 🔍 Data Preprocessing
+
+The following preprocessing steps were performed:
+
+1. Removed unnecessary index columns
+2. Identified missing values
+3. Handled missing values using imputation
+4. Removed invalid age records
+5. Separated features and target variable
+6. Performed stratified train-test splitting
+7. Prepared the data for machine learning models
+
+### Missing Values
+
+The original dataset contained missing values in:
+
+- `MonthlyIncome`
+- `NumberOfDependents`
+
+These values were handled during preprocessing.
+
+---
+
+## 🤖 Machine Learning Models
+
+Three classification algorithms were evaluated:
+
+### 1. Logistic Regression
+
+Used as a baseline classification model.
+
+### 2. Decision Tree
+
+Used to capture nonlinear relationships between financial features.
+
+### 3. Random Forest
+
+Used as the primary ensemble learning model.
+
+Random Forest achieved the strongest overall performance and was selected for optimization.
+
+---
+
+## 📈 Initial Model Comparison
+
+| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | 77.02% | 17.78% | 67.28% | 28.13% | 80.00% |
+| Decision Tree | 79.12% | 20.84% | 75.91% | 32.70% | 84.38% |
+| Random Forest | **84.42%** | **25.25%** | 67.93% | **36.82%** | **86.18%** |
+
+Random Forest was selected as the best initial model.
+
+---
+
+## ⚙️ Model Optimization
+
+Because credit-risk datasets are often imbalanced, accuracy alone is not sufficient to evaluate the model.
+
+The Random Forest model was optimized by searching for a better **prediction probability threshold**.
+
+The optimized threshold was:
+
+```text
+0.60
